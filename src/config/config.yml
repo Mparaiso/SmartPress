@@ -1,0 +1,11 @@
+default:
+  extension: html.twig
+  output_extension: html
+  cache: cache
+  root:  src
+  pages: pages
+  posts: posts
+  assets: public
+  index: index.html.twig
+  layout: layout
+  

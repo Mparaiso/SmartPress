@@ -1,0 +1,16 @@
+{
+    "require":{
+        "twig/twig":"*",
+        "symfony/console":"*",
+        "symfony/twig-bridge":"*",
+        "pimple/pimple":"*",
+        "symfony/yaml":"*",
+        "symfony/config":"*",
+        "symfony/finder":"*"
+    },
+    "autoload":{
+        "psr-0":{
+            "":"lib"
+        }
+    }
+}

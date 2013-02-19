@@ -1,0 +1,9 @@
+{%extends "layout.html.twig"%}
+{% block title 'Index' %}
+{%block body %}
+<ul>
+{% for page in pages %}
+<li><a href="{{page.url}}">{{page.title}}</a></li>
+{% endfor %}
+</ul>
+{%endblock%}
