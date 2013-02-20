@@ -1,7 +1,7 @@
-Silex Cookbook
-==============
+SmartPress
+==========
 
-usefull Silex application recipes
----------------------------------
+Smart Site generator
+--------------------
 
 author : M.Paraiso
