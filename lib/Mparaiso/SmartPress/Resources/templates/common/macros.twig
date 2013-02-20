@@ -1,0 +1,22 @@
+{# empty Twig template #}
+{% macro input(name, value, type, size) %}
+<input type="{{ type|default('text') }}" name="{{ name }}" value="{{ value|e }}"
+size="{{ size|default(20) }}" />
+{% endmacro %}
+{% macro tree(arr,attr)%}
+<ul {% for key,value in attr  %}
+{{key}} ="{{value}}"
+{% endfor %}
+>
+{% for key,value in arr %}
+{% if value.title is defined and value.url is defined %}
+<li ><a href="{{value.url}}">{{value.title}}</a></li>
+{% else %}
+<li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="{{url}}"> {{key}} <b class="caret"></b></a>
+    {{_self.tree(value,{class:"dropdown-menu"})}}
+</li>
+{% endif %}
+{% endfor %}
+</ul>
+{% endmacro %}

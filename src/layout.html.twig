@@ -1,13 +1,28 @@
+{% import "common/macros.twig" as utils %}
 <!DOCTYPE HTML>
 <html lang="en-US">
 <head>
     <meta charset="UTF-8">
     <title>{%block title 'SmartPress' %}</title>
+    {% block stylesheets %}
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css">
+    {% endblock %}
 </head>
 <body>
-    {%block body%}
-    {%endblock%}
+    <div class="container">
+        <h1>Welcome to SmartPress</h1>
+        {% block navbar %}
+        <div class="row">
+            {# get all pages as a tree list #}
+            {% include 'include/page_menu.twig' with {attr:{class:"nav nav-pills"}} %}
+        </div>
+        {% endblock %}
+        {% block content %}
+        {% endblock %}
+    </div>
     {% block javascript %}
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     {% endblock %}
 </body>
 </html>

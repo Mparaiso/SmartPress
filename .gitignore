@@ -2,3 +2,5 @@
 /vendor/
 /src/cache/
 /build/
+/src/pages/
+/src/posts/

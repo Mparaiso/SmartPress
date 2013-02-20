@@ -8,4 +8,5 @@ default:
   assets: public
   index: index.html.twig
   layout: layout
+  assets: assets
   

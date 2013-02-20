@@ -1,5 +1,15 @@
 {%extends "layout.html.twig"%}
 {% block title 'Index' %}
-{%block body %}
-<pre>{{ sp|json_encode(true,true) }}</pre>
-{%endblock%}
+{% block content %}
+<div class="row">
+    this is the index page
+</div>
+<div class="row">
+    <ul>
+        {%for post in sp.posts%}<li><a href="{{post}}">{{post}}</a></li>{%endfor%}
+    </ul>
+</div>
+<div class="row">
+</div>
+
+{% endblock %}

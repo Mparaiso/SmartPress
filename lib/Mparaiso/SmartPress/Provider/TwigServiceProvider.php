@@ -9,6 +9,7 @@ use Mparaiso\SmartPress\ServiceProviderInterface;
  * FR : gère la configuration de twig
  */
 class TwigServiceProvider implements ServiceProviderInterface {
+    
 
     function register(SmartPress $sp) {
         # FR : configuration de twig
@@ -21,7 +22,12 @@ class TwigServiceProvider implements ServiceProviderInterface {
         );
         # FR : le twig loader , on utilise des fichiers par défaut
         $sp["twig.loader"] = $sp->share(function($sp) {
-                    return new \Twig_Loader_filesystem($sp["config.root_path"]);
+                    return new \Twig_Loader_filesystem(
+                            array(
+                                $sp["config.root_path"],
+                                __DIR__."/../Resources/templates",
+                                )
+                            );
                 }
         );
         # FR : l'envirronment Twig
@@ -36,6 +42,7 @@ class TwigServiceProvider implements ServiceProviderInterface {
         $sp["twig.default_vars"] = $sp->share(function($sp) {
                     $vars = array();
                     $vars["pages"] = $sp["twig.pages.parser"]($sp["pages.templates"]);
+                    $vars["posts"]=$sp["twig.posts.parser"]($sp["finder.posts_templates"]);
                     return $vars;
                 }
         );
@@ -54,9 +61,10 @@ class TwigServiceProvider implements ServiceProviderInterface {
      * @return array
      */
     function generatePostArray(array $postList) {
-        $result = array();
-        //foreach($sp["posts."])
-        return $postList;
+        foreach ($postList as $post) {
+            $result[]=preg_replace("/.twig$/","",$post);
+        }
+        return $result;
     }
 
     /**
@@ -67,7 +75,7 @@ class TwigServiceProvider implements ServiceProviderInterface {
     function generatePageArray(array $pageList) {
         $result = array();
         foreach ($pageList as $templatePath) {
-            $pathParts = explode("/", $templatePath);
+            $pathParts = explode(DS , $templatePath);
             $index = 0;
             $root = &$result;
             foreach ($pathParts as $part) {
@@ -76,7 +84,7 @@ class TwigServiceProvider implements ServiceProviderInterface {
                     $pathinfo = pathinfo($templatePath);
                     $root[] = array(
                         "url" => $pathinfo["dirname"] . "/" . $pathinfo["filename"],
-                        "label" => preg_replace("/-{1}/", " ", preg_replace("/\.\S+$/", "", $pathinfo["filename"])),
+                        "title" => preg_replace("/-{1}/", " ", preg_replace("/\.\S+$/", "", $pathinfo["filename"])),
                     );
                     break;
                 }
