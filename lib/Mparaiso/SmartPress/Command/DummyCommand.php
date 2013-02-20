@@ -18,7 +18,7 @@ class DummyCommand extends Command {
     }
 
     protected function configure() {
-        $this->setName('dummy:showpages')
+        $this->setName('sp:dummy')
         ->setDescription('show smartpress pages');
         #/*->addArgument('name', InputArgument::OPTIONAL, 'Who do you want to gree')
         #->addOption('yell', null, InputOption::VALUE_NONE, "If set,

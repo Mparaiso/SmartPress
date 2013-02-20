@@ -15,6 +15,7 @@ class TwigServiceProvider implements ServiceProviderInterface {
         $sp["twig.options"] = $sp->share(function($sp) {
                     return array(
                         "cache" => $sp["config.cache_path"],
+                        "debug"=>$sp["debug"],
                     );
                 }
         );

@@ -6,7 +6,9 @@
         "pimple/pimple":"*",
         "symfony/yaml":"*",
         "symfony/config":"*",
-        "symfony/finder":"*"
+        "symfony/finder":"*",
+        "silex/silex":"*@dev",
+        "symfony/twig-bridge":"*"
     },
     "autoload":{
         "psr-0":{

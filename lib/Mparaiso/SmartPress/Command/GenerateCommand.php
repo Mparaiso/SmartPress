@@ -3,13 +3,13 @@
 namespace Mparaiso\SmartPress\Command;
 
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
+//use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
+//use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Mparaiso\SmartPress\SmartPress;
 
-class DummyCommand extends Command {
+class GenerateCommand extends Command {
 
     protected $sp;
 
@@ -19,7 +19,7 @@ class DummyCommand extends Command {
     }
 
     protected function configure() {
-        $this->setName('generate')
+        $this->setName('sp:generate')
                 ->setDescription('Generate static website');
         /* ->addArgument('name', InputArgument::OPTIONAL, 'Who do you want to gree')
           ->addOption('yell', null, InputOption::VALUE_NONE, "If set,
@@ -27,7 +27,11 @@ class DummyCommand extends Command {
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) {
+        $output->writeln("Generating static pages");
         $this->sp->generate();
+        foreach ($this->sp["generated_files"] as $file) {
+            $output->writeln($file);
+        }
         $output->writeln("Done !");
     }
 
