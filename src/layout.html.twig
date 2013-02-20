@@ -6,11 +6,14 @@
     <title>{%block title 'SmartPress' %}</title>
     {% block stylesheets %}
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     {% endblock %}
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to SmartPress</h1>
+        {% block header %}
+        <h1 class="serif">Welcome to SmartPress</h1>
+        {% endblock %}
         {% block navbar %}
         <div class="row">
             {# get all pages as a tree list #}
